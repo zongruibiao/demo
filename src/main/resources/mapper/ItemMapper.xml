@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ule.fenxiao.dao.ItemMapper">
+    <resultMap id="itemResultMap" type="com.ule.fenxiao.vo.Item">
+        <id column="ITEM_ID" property="itemId" jdbcType="NUMERIC"/>
+        <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR"/>
+        <result column="LIST_ID" property="listId" jdbcType="NUMERIC"/>
+        <result column="STORE_ID" property="storeId" jdbcType="NUMERIC"/>
+        <result column="MERCHANT_ID" property="merchantId" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <sql id="query">ITEM_ID,ITEM_NAME,LIST_ID</sql>
+
+    <select id="findALl" resultMap="itemResultMap">
+        select * from item
+    </select>
+
+    <select id="finByItemId" parameterType="int" resultType="com.ule.fenxiao.vo.Item" resultMap="itemResultMap">
+        select <include refid="query"></include> from item where  item_id=#{itemId}
+    </select>
+
+    <select id="queryByItem" resultType="com.ule.fenxiao.vo.Item"  resultMap="itemResultMap">
+      select * from item
+      <where>
+        <if test="itemId!=null">and item_id=#{itemId}</if>
+        <if test="listId!=null">and list_id=#{listId}</if>
+      </where>
+    </select>
+
+    <select id="queryByItemIdList" resultType="com.ule.fenxiao.vo.Item" resultMap="itemResultMap" >
+      select * from item
+         <trim prefix="where" prefixOverrides="and |or">
+             <if test="list!=null and list.size!=0">
+               and item_id in
+              <foreach collection="list" item="itemId" index="index" open="(" close=")" separator=",">
+                   #{itemId}
+              </foreach>
+             </if>
+         </trim>
+    </select>
+
+    <select id="queryByItemIdMap" resultType="com.ule.fenxiao.vo.Item" resultMap="itemResultMap" >
+        select * from item
+        <trim prefix="where" prefixOverrides="and |or">
+            <if test="itemName!=null">and ITEM_NAME LIKE "%"#{itemName}"%"</if>
+            <if test="ids!=null and ids.size!=0">
+                and item_id in
+                <foreach collection="ids" item="itemId" index="index" open="(" close=")" separator=",">
+                    #{itemId}
+                </foreach>
+            </if>
+        </trim>
+    </select>
+
+
+    <update id="updateByItemId">
+        update item
+        <set>
+            <if test="itemName!=null">ITEM_NAME=#{itemName},</if>
+            <if test="storeId!=null">STORE_ID=#{storeId},</if>
+            <if test="merchantId!=null">MERCHANT_ID=#{merchantId},</if>
+        </set>
+        where  item_id=#{itemId}
+    </update>
+
+    <insert id="saveItem" parameterType="com.ule.fenxiao.vo.Item">
+        insert into item (ITEM_ID,ITEM_NAME,LIST_ID,STORE_ID,MERCHANT_ID) VALUES (#{itemId},#{itemName},#{listId},#{storeId},#{merchantId})
+    </insert>
+
+    <insert id="getSaveItemId" parameterType="com.ule.fenxiao.vo.Item" keyProperty="itemId" useGeneratedKeys="true">
+        insert into item (ITEM_NAME,LIST_ID,STORE_ID,MERCHANT_ID) VALUES (#{itemName},#{listId},#{storeId},#{merchantId})
+    </insert>
+
+    <delete id="delByItemId" parameterType="int" >
+     DELETE from item where item_id=#{itemId}
+    </delete>
+
+</mapper>

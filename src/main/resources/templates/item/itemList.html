@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <table border="1px">
+     <tr>
+         <th>商品ID</th>
+         <th>商品名称</th>
+         <th>LISTID</th>
+         <th>店铺ID</th>
+         <th>商家ID</th>
+     </tr>
+    <tr th:each="item,itemStart :${resultList}">
+        <td th:text="${item.itemId}"></td>
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.listId}"></td>
+        <td th:text="${item.storeId}"></td>
+        <td th:text="${item.merchantId}"></td>
+    </tr>
+ </table>
+</body>
+</html>
