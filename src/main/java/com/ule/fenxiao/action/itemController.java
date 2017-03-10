@@ -1,5 +1,7 @@
 package com.ule.fenxiao.action;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ule.fenxiao.dao.ItemMapper;
 import com.ule.fenxiao.vo.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by zongruibiao on 2017/3/7.
@@ -23,10 +22,24 @@ public class itemController {
 
     @Autowired
     ItemMapper itemMapper;
+
     @RequestMapping("/queryAllItem")
     public String queryAllItem(Model model){
         List<Item> result=itemMapper.findALl();
         model.addAttribute("resultList",result);
+        return "item/itemList";
+    }
+    @RequestMapping("/queryByPage/{currentPage}")
+    public String queryByPage(Model model,@PathVariable Integer currentPage){
+        /**
+         * 第一个参数是第几页；第二个参数是每页显示条数。
+         */
+        if(currentPage!=null){
+            PageHelper.startPage(currentPage,1);
+        }
+        //List<Item> result=itemMapper.findALl();
+        PageInfo    pageInfo=new PageInfo(itemMapper.findALl());
+        model.addAttribute("pageInfo",pageInfo);
         return "item/itemList";
     }
 

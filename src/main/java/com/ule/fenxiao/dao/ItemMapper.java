@@ -10,7 +10,6 @@ import java.util.Objects;
 /**
  * Created by zongruibiao on 2017/3/7.
  */
-@Mapper
 public interface ItemMapper  {
 
      List<Item> findALl();

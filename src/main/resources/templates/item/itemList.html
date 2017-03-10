@@ -13,7 +13,7 @@
          <th>店铺ID</th>
          <th>商家ID</th>
      </tr>
-    <tr th:each="item,itemStart :${resultList}">
+    <tr th:each="item,itemStart :${pageInfo.list}">
         <td th:text="${item.itemId}"></td>
         <td th:text="${item.itemName}"></td>
         <td th:text="${item.listId}"></td>

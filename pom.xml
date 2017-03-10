@@ -64,12 +64,19 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
-
+        <!--分页插件-->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.1.6</version>
 		</dependency>
 
+        <!--通用Mapper插件-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>3.3.4</version>
+        </dependency>
 		<!-- optional=true,依赖不会传递-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
