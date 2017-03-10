@@ -64,12 +64,6 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-
 		<!-- optional=true,依赖不会传递-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
