@@ -1,5 +1,7 @@
 package com.ule.fenxiao.vo;
 
+
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
@@ -47,7 +49,8 @@ public class Item implements Serializable {
     private Integer onlineableTime; // 处罚性下架可上架时间
 	/******退回原因******/
     private String backReason;        
-    
+
+    @Transient
     private Byte itemType;
     
     private String remark ; //备注

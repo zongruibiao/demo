@@ -1,5 +1,6 @@
 package com.ule.fenxiao.vo;
 
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Listing implements Serializable {
     private Long prdId;
     private Long categoryId;
 
+    @Transient
     private List<Item> itemList;
 
     public Long getListId() {
