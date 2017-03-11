@@ -2,7 +2,6 @@ package com.ule.fenxiao.action;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ule.fenxiao.dao.ItemMapper;
 import com.ule.fenxiao.vo.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
