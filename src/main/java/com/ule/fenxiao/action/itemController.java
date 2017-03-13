@@ -26,9 +26,9 @@ public class itemController {
     @RequestMapping("/queryAllItem")
     public String queryAllItem(Model model){
         List<Item> result=itemMapper.findALl();
-        Item item=new Item();
-        item.setItemId(63820101L);
-        result=itemMapper.select(item);
+        //Item item=new Item();
+        //item.setItemId(63820101L);
+        //result=itemMapper.select(item);
         model.addAttribute("resultList",result);
         return "item/itemList";
     }
