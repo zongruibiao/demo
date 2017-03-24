@@ -23,7 +23,7 @@ public class itemController {
     @Autowired
     ItemMapper itemMapper;
 
-    @RequestMapping("/queryAllItem")
+    @RequestMapping("/query/queryAllItem")
     public String queryAllItem(Model model){
         List<Item> result=itemMapper.findALl();
         //Item item=new Item();
