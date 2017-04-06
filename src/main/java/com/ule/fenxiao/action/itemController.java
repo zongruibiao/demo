@@ -5,13 +5,17 @@ import com.github.pagehelper.PageInfo;
 import com.ule.fenxiao.dao.ItemMapper;
 import com.ule.fenxiao.vo.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zongruibiao on 2017/3/7.
@@ -22,9 +26,12 @@ public class itemController {
 
     @Autowired
     ItemMapper itemMapper;
+    @Autowired
+    KafkaTemplate kafkaTemplate;
 
     @RequestMapping("/query/queryAllItem")
     public String queryAllItem(Model model){
+        kafkaTemplate.send("test01","bootc", "bootcwnao");
         List<Item> result=itemMapper.findALl();
         //Item item=new Item();
         //item.setItemId(63820101L);
