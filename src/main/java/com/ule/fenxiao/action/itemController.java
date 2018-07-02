@@ -44,7 +44,6 @@ public class itemController {
         if(currentPage!=null){
             PageHelper.startPage(currentPage,1);
         }
-        //List<Item> result=itemMapper.findALl();
         PageInfo    pageInfo=new PageInfo(itemMapper.findALl());
         model.addAttribute("pageInfo",pageInfo);
         return "item/itemList";
