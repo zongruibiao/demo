@@ -33,6 +33,9 @@ public class itemController {
     public String queryAllItem(Model model){
         kafkaTemplate.send("test01","bootc", "bootcwnao");
         List<Item> result=itemMapper.findALl();
+        //Item item=new Item();
+        //item.setItemId(63820101L);
+        //result=itemMapper.select(item);
         model.addAttribute("resultList",result);
         return "item/itemList";
     }
@@ -44,6 +47,7 @@ public class itemController {
         if(currentPage!=null){
             PageHelper.startPage(currentPage,1);
         }
+        //List<Item> result=itemMapper.findALl();
         PageInfo    pageInfo=new PageInfo(itemMapper.findALl());
         model.addAttribute("pageInfo",pageInfo);
         return "item/itemList";
