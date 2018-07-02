@@ -33,9 +33,6 @@ public class itemController {
     public String queryAllItem(Model model){
         kafkaTemplate.send("test01","bootc", "bootcwnao");
         List<Item> result=itemMapper.findALl();
-        //Item item=new Item();
-        //item.setItemId(63820101L);
-        //result=itemMapper.select(item);
         model.addAttribute("resultList",result);
         return "item/itemList";
     }
